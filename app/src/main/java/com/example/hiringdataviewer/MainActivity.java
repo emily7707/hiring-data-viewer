@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue = Volley.newRequestQueue(this);
         controller = new HiringDataController(this, requestQueue, findViewById(R.id.title), findViewById(R.id.display));
+        controller.fetchHiringData();
     }
 }

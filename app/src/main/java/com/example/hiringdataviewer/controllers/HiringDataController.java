@@ -29,7 +29,10 @@ public class HiringDataController {
     public HiringDataController(final Context context, final RequestQueue requestQueue, final TextView title, final ExpandableListView resultsDisplay) {
         this.hiringDataViewer = new HiringDataViewer(context, title, resultsDisplay);
         this.requestQueue = requestQueue;
-        fetchHiringData();
+    }
+
+    public Map<Integer, List<Item>> getItems() {
+        return items; // If we're concerned about clients modifying this, we can do a deep clone
     }
 
     public void fetchHiringData() {
@@ -44,7 +47,7 @@ public class HiringDataController {
         requestQueue.add(jsonArrayRequest); // async call using Volley
     }
 
-    private void parseAndStoreResponse(final JSONArray response) {
+    public void parseAndStoreResponse(final JSONArray response) {
         try {
             items = new HashMap<>();
             for (int i = 0; i < response.length(); i++) {
